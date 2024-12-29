@@ -1,5 +1,5 @@
 
-### API Security Checklist
+### API Security Checklist V1.0
 
 ---
 
@@ -197,3 +197,64 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "https://trusted-origin.com"}})
 ```
+
+---
+
+### API Security Checklist V1.1
+---
+
+#### **Broken Object-Level Authorization**
+
+- [ ] Ensure every API endpoint verifies object ownership before providing access.
+- [ ] Validate permissions for each resource request.
+
+#### **Broken User Authentication**
+
+- [ ] Implement secure authentication mechanisms like OAuth2 or JWT.
+- [ ] Enforce strong password policies and multi-factor authentication.
+- [ ] Monitor login attempts and lock accounts after multiple failures.
+
+#### **Excessive Data Exposure**
+
+- [ ] Restrict API responses to include only necessary fields.
+- [ ] Avoid exposing sensitive information such as passwords, tokens, or internal system details.
+
+#### **Lack of Resources & Rate Limiting**
+
+- [ ] Apply rate limits per user or IP address to prevent abuse.
+- [ ] Use throttling to mitigate DDoS attacks and brute-force attempts.
+
+#### **Broken Function-Level Authorization**
+
+- [ ] Enforce role-based access control (RBAC) for sensitive functions.
+- [ ] Validate user roles and permissions on every request.
+- [ ] Avoid exposing admin-only endpoints to unauthorized users.
+
+#### **Mass Assignment**
+
+- [ ] Define and enforce allow-lists for updatable fields in API requests.
+- [ ] Block attempts to update restricted or sensitive fields through APIs.
+
+#### **Security Misconfiguration**
+
+- [ ] Disable debug mode and directory indexing on servers.
+- [ ] Enforce HTTPS and configure HSTS headers.
+- [ ] Regularly review and harden server and framework settings.
+
+#### **Injection**
+
+- [ ] Validate and sanitize all inputs to prevent SQL, NoSQL, and command injections.
+- [ ] Use parameterized queries or prepared statements for database interactions.
+- [ ] Avoid concatenating inputs directly into queries or commands.
+
+#### **Improper Asset Management**
+
+- [ ] Maintain an updated inventory of APIs, endpoints, and dependencies.
+- [ ] Regularly test and review third-party integrations for vulnerabilities.
+- [ ] Remove or secure deprecated APIs.
+
+#### **Insufficient Logging & Monitoring**
+
+- [ ] Log all critical actions such as login attempts, failed requests, and data modifications.
+- [ ] Monitor logs for unusual activity or patterns.
+- [ ] Set up alerts for high-risk events like unauthorized access attempts or spikes in requests.
